@@ -1,5 +1,6 @@
 package com.pd.mydictionary.presernter
 
+import com.pd.mydictionary.model.data.AppState
 import com.pd.mydictionary.view.base.View
 
 interface Presenter<T : AppState, V : View> {
