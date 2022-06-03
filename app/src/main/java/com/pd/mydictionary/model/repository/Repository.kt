@@ -1,4 +1,4 @@
-package com.pd.mydictionary.model
+package com.pd.mydictionary.model.repository
 
 import io.reactivex.Observable
 
