@@ -5,6 +5,7 @@ import com.pd.mydictionary.model.datasourse.DataSourceLocal
 import com.pd.mydictionary.model.datasourse.DataSourceRemote
 import com.pd.mydictionary.model.repository.RepositoryImplementation
 import com.pd.mydictionary.presernter.Presenter
+import com.pd.mydictionary.rx.SchedulerProvider
 import com.pd.mydictionary.view.base.View
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver

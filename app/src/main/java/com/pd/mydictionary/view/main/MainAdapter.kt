@@ -1,5 +1,6 @@
 package com.pd.mydictionary.view.main
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ class MainAdapter(
 ) :
     RecyclerView.Adapter<MainAdapter.RecyclerItemViewHolder>() {
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(data: List<DataModel>) {
         this.data = data
         notifyDataSetChanged()
