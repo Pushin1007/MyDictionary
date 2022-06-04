@@ -4,7 +4,8 @@ import com.pd.mydictionary.model.repository.Repository
 import com.pd.mydictionary.model.data.AppState
 import com.pd.mydictionary.model.data.DataModel
 import com.pd.mydictionary.presernter.Interactor
-import io.reactivex.Observable
+
+import io.reactivex.rxjava3.core.Observable
 
 class MainInteractor(
     private val remoteRepository: Repository<List<DataModel>>,

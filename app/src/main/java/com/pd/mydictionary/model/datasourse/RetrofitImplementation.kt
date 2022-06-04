@@ -1,13 +1,15 @@
 package com.pd.mydictionary.model.datasourse
 
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+
 import com.pd.mydictionary.BASE_URL_LOCATIONS
 import com.pd.mydictionary.model.data.DataModel
-import io.reactivex.Observable
+
+import io.reactivex.rxjava3.core.Observable
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitImplementation : DataSource<List<DataModel>> {
@@ -21,12 +23,11 @@ class RetrofitImplementation : DataSource<List<DataModel>> {
     }
 
     private fun createRetrofit(interceptor: Interceptor): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL_LOCATIONS)
+        val retrofit = Retrofit.Builder().baseUrl(BASE_URL_LOCATIONS)
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .client(createOkHttpClient(interceptor))
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()
+        return retrofit
     }
 
     private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
@@ -38,3 +39,11 @@ class RetrofitImplementation : DataSource<List<DataModel>> {
 
 
 }
+// private val skyEngApi: SkyEngApi by lazy {
+//        val retrofit = Retrofit.Builder()
+//            .baseUrl("https://dictionary.skyeng.ru/api/public/v1/")
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+//            .build()
+//        retrofit.create(SkyEngApi::class.java)
+//    }

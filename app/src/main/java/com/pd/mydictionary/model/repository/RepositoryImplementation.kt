@@ -2,7 +2,8 @@ package com.pd.mydictionary.model.repository
 
 import com.pd.mydictionary.model.datasourse.DataSource
 import com.pd.mydictionary.model.data.DataModel
-import io.reactivex.Observable
+
+import io.reactivex.rxjava3.core.Observable
 
 class RepositoryImplementation(
     private val dataSource: DataSource<List<DataModel>>

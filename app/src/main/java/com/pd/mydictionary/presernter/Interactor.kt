@@ -1,6 +1,7 @@
 package com.pd.mydictionary.presernter
 
-import io.reactivex.Observable
+
+import io.reactivex.rxjava3.core.Observable
 
 interface Interactor<T> {
 

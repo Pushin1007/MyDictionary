@@ -1,6 +1,7 @@
 package com.pd.mydictionary.rx
 
-import io.reactivex.Scheduler
+import io.reactivex.rxjava3.core.Scheduler
+
 
 // вспомогательный код для тестирования rx
 interface ISchedulerProvider {

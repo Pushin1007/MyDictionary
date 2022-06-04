@@ -7,8 +7,8 @@ import com.pd.mydictionary.model.repository.RepositoryImplementation
 import com.pd.mydictionary.presernter.Presenter
 import com.pd.mydictionary.rx.SchedulerProvider
 import com.pd.mydictionary.view.base.View
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.observers.DisposableObserver
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.observers.DisposableObserver
 
 class MainPresenterImpl<T : AppState, V : View>(
     private val interactor: MainInteractor = MainInteractor(
