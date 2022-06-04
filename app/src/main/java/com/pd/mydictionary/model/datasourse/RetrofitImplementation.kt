@@ -1,6 +1,7 @@
 package com.pd.mydictionary.model.datasourse
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.pd.mydictionary.BASE_URL_LOCATIONS
 import com.pd.mydictionary.model.data.DataModel
 import io.reactivex.Observable
 import okhttp3.Interceptor
@@ -15,8 +16,8 @@ class RetrofitImplementation : DataSource<List<DataModel>> {
         return getService(BaseInterceptor.interceptor).search(word)
     }
 
-    private fun getService(interceptor: Interceptor): ApiService {
-        return createRetrofit(interceptor).create(ApiService::class.java)
+    private fun getService(interceptor: Interceptor): SkyEngApi {
+        return createRetrofit(interceptor).create(SkyEngApi::class.java)
     }
 
     private fun createRetrofit(interceptor: Interceptor): Retrofit {
@@ -35,7 +36,5 @@ class RetrofitImplementation : DataSource<List<DataModel>> {
         return httpClient.build()
     }
 
-    companion object {
-        private const val BASE_URL_LOCATIONS = "https://dictionary.skyeng.ru/api/public/v1/"
-    }
+
 }

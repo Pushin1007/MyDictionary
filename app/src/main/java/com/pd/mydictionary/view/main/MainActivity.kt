@@ -5,6 +5,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pd.mydictionary.BOTTOM_SHEET_FRAGMENT_DIALOG_TAG
 import com.pd.mydictionary.R
 import com.pd.mydictionary.databinding.ActivityMainBinding
 import com.pd.mydictionary.model.data.AppState
@@ -108,8 +109,8 @@ class MainActivity : BaseActivity<AppState>() {
         binding.errorLinearLayout.visibility = VISIBLE
     }
 
-    companion object {
-        private const val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG =
-            "74a54328-5d62-46bf-ab6b-cbf5fgt0-092395"
-    }
+//    companion object {
+//        private const val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG =
+//            "74a54328-5d62-46bf-ab6b-cbf5fgt0-092395"
+//    }
 }
