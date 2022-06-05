@@ -67,7 +67,7 @@ class SearchDialogFragment : BottomSheetDialogFragment() {
 
     private fun addOnClearClickListener() {
         binding.clearTextImageview.setOnClickListener {
-            binding.searchEditText.setText("")
+            binding.searchEditText.setText(String.getEmptyString())
             binding.searchButtonTextview.isEnabled = false
         }
     }
