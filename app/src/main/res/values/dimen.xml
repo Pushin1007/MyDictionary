@@ -26,4 +26,5 @@
     //Corner radius
     <dimen name="bottom_sheet_dialog_corner_radius">10dp</dimen>
 
+    <dimen name="counter_max_length">24</dimen>
 </resources>

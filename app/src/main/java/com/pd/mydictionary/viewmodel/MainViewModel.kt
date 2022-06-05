@@ -13,7 +13,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val interactor: MainInteractor
 ) : BaseViewModel<AppState>() {
-
+// переменная состояния активити
     private var appState: AppState? = null
 
     fun subscribe(): LiveData<AppState> {
@@ -40,7 +40,7 @@ class MainViewModel @Inject constructor(
                 appState = parseSearchResults(state)
                 liveDataForViewToObserve.value = appState
             }
-
+// пробрасываем ошибку также через liveData
             override fun onError(e: Throwable) {
                 liveDataForViewToObserve.value = AppState.Error(e)
             }

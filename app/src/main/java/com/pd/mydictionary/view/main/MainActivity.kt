@@ -23,6 +23,7 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
+    //создаем viewModel через зависимость даггера
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
 
@@ -35,12 +36,15 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
             searchDialogFragment.setOnSearchClickListener(onSearchClickListener)
             searchDialogFragment.show(supportFragmentManager, BOTTOM_SHEET_FRAGMENT_DIALOG_TAG)
         }
+
+    //при нажатии на элемент ресайклер - бросаем тост
     private val onListItemClickListener: MainAdapter.OnListItemClickListener =
         object : MainAdapter.OnListItemClickListener {
             override fun onItemClick(data: DataModel) {
                 Toast.makeText(this@MainActivity, data.text, Toast.LENGTH_SHORT).show()
             }
         }
+    // проверку интернета проверяем утилитой
     private val onSearchClickListener: SearchDialogFragment.OnSearchClickListener =
         object : SearchDialogFragment.OnSearchClickListener {
             override fun onClick(searchWord: String) {
@@ -59,7 +63,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+//подписка на данные от viewModel
         model = viewModelFactory.create(MainViewModel::class.java)
         model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
 
