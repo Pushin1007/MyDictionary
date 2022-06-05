@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.pd.mydictionary.databinding.SearchDialogFragmentBinding
+import com.pd.mydictionary.getEmptyString
 
 class SearchDialogFragment : BottomSheetDialogFragment() {
 

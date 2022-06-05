@@ -2,6 +2,7 @@ package com.pd.mydictionary.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.pd.mydictionary.viewmodel.MainViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

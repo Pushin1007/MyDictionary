@@ -3,9 +3,12 @@ package com.pd.mydictionary.view.base
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
+import com.pd.mydictionary.R
 import com.pd.mydictionary.model.data.AppState
-import com.pd.mydictionary.presernter.Presenter
-import com.pd.mydictionary.view.BaseViewModel
+import com.pd.mydictionary.utils.AlertDialogFragment
+import com.pd.mydictionary.utils.isOnline
+import com.pd.mydictionary.viewmodel.BaseViewModel
+import com.pd.mydictionary.viewmodel.Interactor
 
 //Делаем родительский класс т.к. у нас много будет общего
 abstract class BaseActivity<T : AppState, I : Interactor<T>> : AppCompatActivity() {
@@ -35,7 +38,8 @@ abstract class BaseActivity<T : AppState, I : Interactor<T>> : AppCompatActivity
     }
 
     protected fun showAlertDialog(title: String?, message: String?) {
-        AlertDialogFragment.newInstance(title, message).show(supportFragmentManager, DIALOG_FRAGMENT_TAG)
+        AlertDialogFragment.newInstance(title, message)
+            .show(supportFragmentManager, DIALOG_FRAGMENT_TAG)
     }
 
     private fun isDialogNull(): Boolean {

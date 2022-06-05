@@ -1,11 +1,16 @@
 package com.pd.mydictionary.view.main
 
+import com.pd.mydictionary.NAME_LOCAL
+import com.pd.mydictionary.NAME_REMOTE
 import com.pd.mydictionary.model.repository.Repository
 import com.pd.mydictionary.model.data.AppState
 import com.pd.mydictionary.model.data.DataModel
-import com.pd.mydictionary.presernter.Interactor
+
+import com.pd.mydictionary.viewmodel.Interactor
 
 import io.reactivex.rxjava3.core.Observable
+import javax.inject.Inject
+import javax.inject.Named
 
 class MainInteractor @Inject constructor(
     @Named(NAME_REMOTE) val repositoryRemote: Repository<List<DataModel>>,

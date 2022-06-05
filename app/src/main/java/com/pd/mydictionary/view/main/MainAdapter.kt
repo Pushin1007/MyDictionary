@@ -1,13 +1,17 @@
 package com.pd.mydictionary.view.main
 
-import android.annotation.SuppressLint
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+
 import androidx.recyclerview.widget.RecyclerView
 import com.pd.mydictionary.R
 import com.pd.mydictionary.model.data.DataModel
+import kotlinx.android.synthetic.main.activity_main_recyclerview_item.view.*
+import com.pd.mydictionary.utils.convertMeaningsToString
+
+
 
 class MainAdapter(private var onListItemClickListener: OnListItemClickListener) :
     RecyclerView.Adapter<MainAdapter.RecyclerItemViewHolder>() {

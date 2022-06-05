@@ -1,5 +1,13 @@
 package com.pd.mydictionary.di
 
+import com.pd.mydictionary.NAME_LOCAL
+import com.pd.mydictionary.NAME_REMOTE
+import com.pd.mydictionary.model.data.DataModel
+import com.pd.mydictionary.model.datasourse.DataSource
+import com.pd.mydictionary.model.datasourse.RetrofitImplementation
+import com.pd.mydictionary.model.datasourse.RoomDataBaseImplementation
+import com.pd.mydictionary.model.repository.Repository
+import com.pd.mydictionary.model.repository.RepositoryImplementation
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named

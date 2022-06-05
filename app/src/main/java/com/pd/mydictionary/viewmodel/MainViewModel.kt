@@ -1,6 +1,14 @@
-package com.pd.mydictionary.view
+package com.pd.mydictionary.viewmodel
 
 import androidx.lifecycle.LiveData
+import com.pd.mydictionary.model.data.AppState
+import com.pd.mydictionary.utils.parseSearchResults
+import com.pd.mydictionary.view.main.MainInteractor
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.observers.DisposableObserver
+import javax.inject.Inject
+
+
 
 class MainViewModel @Inject constructor(
     private val interactor: MainInteractor

@@ -1,6 +1,7 @@
 package com.pd.mydictionary.di
 
 import android.app.Application
+import com.pd.mydictionary.App
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
@@ -23,9 +24,6 @@ import javax.inject.Singleton
 @Singleton
 interface AppComponent {
 
-    /** Этот билдер мы вызовем из класса TranslatorApp, который наследует
-    Application */
-
     @Component.Builder
     interface Builder {
         @BindsInstance
@@ -34,7 +32,6 @@ interface AppComponent {
         fun build(): AppComponent
     }
 
-    /** Наш кастомный Application */
-    fun inject(englishVocabularyApp: TranslatorApp)
+    fun inject(englishVocabularyApp: App)
 
 }

@@ -11,10 +11,14 @@ import com.pd.mydictionary.R
 import com.pd.mydictionary.databinding.ActivityMainBinding
 import com.pd.mydictionary.model.data.AppState
 import com.pd.mydictionary.model.data.DataModel
-import com.pd.mydictionary.presernter.Presenter
+
+import com.pd.mydictionary.utils.isOnline
 import com.pd.mydictionary.view.base.BaseActivity
-import com.pd.mydictionary.view.base.View
-import com.pd.mydictionary.view.main.MainAdapter
+
+import com.pd.mydictionary.viewmodel.MainViewModel
+import dagger.android.AndroidInjection
+import androidx.lifecycle.Observer
+import javax.inject.Inject
 
 
 class MainActivity : BaseActivity<AppState, MainInteractor>() {

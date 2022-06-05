@@ -1,8 +1,13 @@
 package com.pd.mydictionary
 
 import android.app.Application
+import com.pd.mydictionary.di.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
+import javax.inject.Inject
 
-class TranslatorApp : Application(), HasAndroidInjector {
+class App : Application(), HasAndroidInjector {
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
