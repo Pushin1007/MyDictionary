@@ -62,7 +62,7 @@ class MainActivity : BaseActivity<AppState>() {
                         binding.mainActivityRecyclerview.adapter =
                             MainAdapter(onListItemClickListener, dataModel)
                     } else {
-                        adapter!!.setData(dataModel)
+                        adapter?.setData(dataModel)
                     }
                 }
             }
@@ -87,7 +87,7 @@ class MainActivity : BaseActivity<AppState>() {
         showViewError()
         binding.errorTextview.text = error ?: getString(R.string.undefined_error)
         binding.reloadButton.setOnClickListener {
-            presenter.getData("hi", true)
+            presenter.getData(R.string.hi.toString(), true)
         }
     }
 
@@ -109,8 +109,4 @@ class MainActivity : BaseActivity<AppState>() {
         binding.errorLinearLayout.visibility = VISIBLE
     }
 
-//    companion object {
-//        private const val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG =
-//            "74a54328-5d62-46bf-ab6b-cbf5fgt0-092395"
-//    }
 }

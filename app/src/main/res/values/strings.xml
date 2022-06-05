@@ -9,5 +9,6 @@
     <string name="delete_description">X</string>
     <string name="helper_text">Please write new word to translate</string>
     <string name="clear">Clear</string>
+    <string name="hi">hi</string>
 </resources>
 

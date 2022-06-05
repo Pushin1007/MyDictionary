@@ -15,20 +15,31 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitImplementation : DataSource<List<DataModel>> {
 
     override fun getData(word: String): Observable<List<DataModel>> {
-        return getService().search(word)
+        return getService(BaseInterceptor.interceptor).search(word)
     }
 
-    private fun getService(): SkyEngApi {
-        return createRetrofit().create(SkyEngApi::class.java)
+    private fun getService(interceptor: Interceptor): SkyEngApi {
+        return createRetrofit(interceptor).create(SkyEngApi::class.java)
     }
 
-    private fun createRetrofit(): Retrofit {
-        val retrofit = Retrofit.Builder().baseUrl(BASE_URL_LOCATIONS)
+    private fun createRetrofit(interceptor: Interceptor): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL_LOCATIONS)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .client(createOkHttpClient(interceptor))
             .build()
-        return retrofit
+    }
+
+    private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
+        val httpClient = OkHttpClient.Builder()
+        httpClient.addInterceptor(interceptor)
+        httpClient.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        return httpClient.build()
     }
 
 
 }
+
+
+
