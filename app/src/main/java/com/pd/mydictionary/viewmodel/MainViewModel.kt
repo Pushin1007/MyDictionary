@@ -4,49 +4,41 @@ import androidx.lifecycle.LiveData
 import com.pd.mydictionary.model.data.AppState
 import com.pd.mydictionary.utils.parseSearchResults
 import com.pd.mydictionary.view.main.MainInteractor
-import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.observers.DisposableObserver
-import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
-
-class MainViewModel @Inject constructor(
+class MainViewModel(
     private val interactor: MainInteractor
 ) : BaseViewModel<AppState>() {
-// переменная состояния активити
-    private var appState: AppState? = null
+    //переменная состояния активити
+    private val liveDataForViewToObserve: LiveData<AppState> = _mutableLiveData
 
     fun subscribe(): LiveData<AppState> {
         return liveDataForViewToObserve
     }
 
     override fun getData(word: String, isOnline: Boolean) {
-        compositeDisposable.add(
-            interactor.getData(word, isOnline)
-                .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
-                .doOnSubscribe(doOnSubscribe())
-                .subscribeWith(getObserver())
-        )
+        _mutableLiveData.value = AppState.Loading(null)
+        cancelJob()
+        viewModelCoroutineScope.launch { startInterceptor(word, isOnline) }
     }
 
-    private fun doOnSubscribe(): (Disposable) -> Unit =
-        { liveDataForViewToObserve.value = AppState.Loading(null) }
-
-    private fun getObserver(): DisposableObserver<AppState> {
-        return object : DisposableObserver<AppState>() {
-
-            override fun onNext(state: AppState) {
-                appState = parseSearchResults(state)
-                liveDataForViewToObserve.value = appState
-            }
-// пробрасываем ошибку также через liveData
-            override fun onError(e: Throwable) {
-                liveDataForViewToObserve.value = AppState.Error(e)
-            }
-
-            override fun onComplete() {
-            }
+    private suspend fun startInterceptor(word: String, isOnline: Boolean) =
+        withContext(Dispatchers.IO) {
+            _mutableLiveData.postValue(parseSearchResults(interactor.getData(word, isOnline)))
         }
+
+    //пробрасываем ошибку также через liveData
+    override fun handleError(error: Throwable) {
+        _mutableLiveData.postValue(AppState.Error(error))
     }
+
+    override fun onCleared() {
+        _mutableLiveData.value = AppState.Success(null)
+        super.onCleared()
+    }
+
+
 }

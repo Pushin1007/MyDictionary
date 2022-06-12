@@ -43,7 +43,11 @@ class MainAdapter(private var onListItemClickListener: OnListItemClickListener) 
         fun bind(data: DataModel) {
             if (layoutPosition != RecyclerView.NO_POSITION) {
                 itemView.header_textview_recycler_item.text = data.text
-                itemView.description_textview_recycler_item.text = convertMeaningsToString(data.meanings!!)
+                itemView.description_textview_recycler_item.text = data.meanings?.let {
+                    convertMeaningsToString(
+                        it
+                    )
+                }
                 itemView.setOnClickListener { openInNewWindow(data) }
             }
         }
