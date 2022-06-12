@@ -44,9 +44,7 @@ class MainAdapter(private var onListItemClickListener: OnListItemClickListener) 
             if (layoutPosition != RecyclerView.NO_POSITION) {
                 itemView.header_textview_recycler_item.text = data.text
                 itemView.description_textview_recycler_item.text = data.meanings?.let {
-                    convertMeaningsToString(
-                        it
-                    )
+                    convertMeaningsToString(it)
                 }
                 itemView.setOnClickListener { openInNewWindow(data) }
             }

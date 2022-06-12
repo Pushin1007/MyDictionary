@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pd.mydictionary.BOTTOM_SHEET_FRAGMENT_DIALOG_TAG
 import com.pd.mydictionary.R
@@ -16,10 +16,12 @@ import com.pd.mydictionary.utils.isOnline
 import com.pd.mydictionary.view.base.BaseActivity
 
 import com.pd.mydictionary.viewmodel.MainViewModel
-import dagger.android.AndroidInjection
+
 import androidx.lifecycle.Observer
+import com.pd.mydictionary.MAIN_VIEW_MODEL
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import javax.inject.Inject
+import org.koin.core.qualifier.named
+
 
 
 class MainActivity : BaseActivity<AppState, MainInteractor>() {
@@ -27,6 +29,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
     private lateinit var binding: ActivityMainBinding
     override lateinit var model: MainViewModel
+
     private val adapter: MainAdapter by lazy { MainAdapter(onListItemClickListener) }
     private val fabClickListener: android.view.View.OnClickListener =
         android.view.View.OnClickListener {
@@ -121,7 +124,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
             throw IllegalStateException("ViewModel должна инициализироваться первой")
         }
 
-        val viewModel: MainViewModel by viewModel()
+        val viewModel: MainViewModel by viewModel( named(MAIN_VIEW_MODEL) )
         model = viewModel
         model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
     }
