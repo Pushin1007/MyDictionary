@@ -19,6 +19,8 @@ import com.pd.mydictionary.viewmodel.MainViewModel
 
 import androidx.lifecycle.Observer
 import com.pd.mydictionary.MAIN_VIEW_MODEL
+import com.pd.mydictionary.utils.convertMeaningsToString
+import com.pd.mydictionary.view.description.DescriptionActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
 
@@ -42,7 +44,15 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
     private val onListItemClickListener: MainAdapter.OnListItemClickListener =
         object : MainAdapter.OnListItemClickListener {
             override fun onItemClick(data: DataModel) {
-                Toast.makeText(this@MainActivity, data.text, Toast.LENGTH_SHORT).show()
+                //при нажатии на элемент вместо тоста показываем картинку
+                startActivity(
+                    DescriptionActivity.getIntent(
+                        this@MainActivity,
+                        data.text!!,
+                        convertMeaningsToString(data.meanings!!),
+                        data.meanings[0].imageUrl
+                    )
+                )
             }
         }
 
