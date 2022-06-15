@@ -1,6 +1,9 @@
 package com.pd.mydictionary.view.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Toast
@@ -21,6 +24,7 @@ import androidx.lifecycle.Observer
 import com.pd.mydictionary.MAIN_VIEW_MODEL
 import com.pd.mydictionary.utils.convertMeaningsToString
 import com.pd.mydictionary.view.description.DescriptionActivity
+import com.pd.mydictionary.view.history.HistoryActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
 
@@ -78,65 +82,37 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         initViews()
     }
 
-    override fun renderData(appState: AppState) {
-        when (appState) {
-            is AppState.Success -> {
-                showViewWorking()
-                val data = appState.data
-                if (data.isNullOrEmpty()) {
-                    showAlertDialog(
-                        getString(R.string.dialog_tittle_sorry),
-                        getString(R.string.empty_server_response_on_success)
-                    )
-                } else {
-                    adapter.setData(data)
-                }
-            }
-            is AppState.Loading -> {
-                showViewLoading()
-                if (appState.progress != null) {
-                    binding.progressBarHorizontal.visibility = VISIBLE
-                    binding.progressBarRound.visibility = GONE
-                    binding.progressBarHorizontal.progress = appState.progress
-                } else {
-                    binding.progressBarHorizontal.visibility = GONE
-                    binding.progressBarRound.visibility = VISIBLE
-                }
-            }
-            is AppState.Error -> {
-                showViewWorking()
-                showAlertDialog(getString(R.string.error_stub), appState.error.message)
-            }
+private fun initViewModel() {
+        if (binding.mainActivityRecyclerview.adapter != null) {
+            throw IllegalStateException(R.string.ViewModel_initialised_first.toString())
         }
+        val viewModel: MainViewModel by viewModel( named(MAIN_VIEW_MODEL))
+        model = viewModel
+        model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
     }
-
-    private fun showViewWorking() {
-        binding.loadingFrameLayout.visibility = GONE
-    }
-
-    private fun showViewLoading() {
-        binding.loadingFrameLayout.visibility = VISIBLE
-    }
-
-    /** Koin
-
-    Выносим инициализацию элементов экрана в отдельный метод initViews */
 
     private fun initViews() {
         binding.searchFab.setOnClickListener(fabClickListener)
-        binding.mainActivityRecyclerview.layoutManager = LinearLayoutManager(applicationContext)
         binding.mainActivityRecyclerview.adapter = adapter
     }
 
-    private fun initViewModel() {
-        // Убедимся, что модель инициализируется раньше View
-        if (binding.mainActivityRecyclerview.adapter != null) {
-            throw IllegalStateException("ViewModel должна инициализироваться первой")
-        }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.history_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
-        val viewModel: MainViewModel by viewModel( named(MAIN_VIEW_MODEL) )
-        model = viewModel
-        model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_history -> {
+                startActivity(Intent(this, HistoryActivity::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun setDataToAdapter(data: List<DataModel>) {
+        adapter.setData(data)
     }
 
 

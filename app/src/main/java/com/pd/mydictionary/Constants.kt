@@ -11,8 +11,14 @@ const val NAME_REMOTE = "Remote"
 const val NAME_LOCAL = "Local"
 
 const val MAIN_INTERACTOR = "MainInteractor"
+const val HISTORY_INTERACTOR = "HistoryInteractor"
 
 const val MAIN_VIEW_MODEL = "MainViewModel"
+const val HISTORY_VIEW_MODEL = "HistoryViewModel"
+const val HISTORY_DATABASE = "HistoryDatabase"
+const val DATABASE_BUILDER = "DatabaseBuilder"
+
+
 
 
 const val TITLE_EXTRA = "89cbce59-e28f-418f-b470-ff67125c2e2f"

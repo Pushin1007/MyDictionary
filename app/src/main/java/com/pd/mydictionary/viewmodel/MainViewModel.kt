@@ -2,7 +2,8 @@ package com.pd.mydictionary.viewmodel
 
 import androidx.lifecycle.LiveData
 import com.pd.mydictionary.model.data.AppState
-import com.pd.mydictionary.utils.parseSearchResults
+import com.pd.mydictionary.utils.parseOnlineSearchResults
+
 import com.pd.mydictionary.view.main.MainInteractor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,7 +28,7 @@ class MainViewModel(
 
     private suspend fun startInterceptor(word: String, isOnline: Boolean) =
         withContext(Dispatchers.IO) {
-            _mutableLiveData.postValue(parseSearchResults(interactor.getData(word, isOnline)))
+            _mutableLiveData.postValue(parseOnlineSearchResults(interactor.getData(word, isOnline)))
         }
 
     //пробрасываем ошибку также через liveData
