@@ -18,8 +18,9 @@
         internet connection.
     </string>
     <string name="dialog_tittle_sorry">Sorry</string>
-
     <string name="error_stub">Error</string>
+    <string name="menu_title_history">History</string>
+    <string name="ViewModel_initialised_first">"The ViewModel should be initialised first"</string>
 
 </resources>
 

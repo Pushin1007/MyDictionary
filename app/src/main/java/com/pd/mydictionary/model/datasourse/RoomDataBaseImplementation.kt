@@ -1,10 +1,22 @@
 package com.pd.mydictionary.model.datasourse
 
+import com.pd.mydictionary.model.data.AppState
 import com.pd.mydictionary.model.data.DataModel
+import com.pd.mydictionary.room.HistoryDao
+import com.pd.mydictionary.utils.convertDataModelSuccessToEntity
+import com.pd.mydictionary.utils.mapHistoryEntityToSearchResult
 
-class RoomDataBaseImplementation : DataSource<List<DataModel>> {
+class RoomDataBaseImplementation(private val historyDao: HistoryDao) :
+    DataSourceLocal<List<DataModel>> {
 
     override suspend fun getData(word: String): List<DataModel> {
-        TODO("Not yet implemented")
+        return mapHistoryEntityToSearchResult(historyDao.all())
+    }
+
+    override suspend fun saveToDB(appState: AppState) {
+        convertDataModelSuccessToEntity(appState)?.let {
+            historyDao.insert(it)
+        }
     }
 }
+
