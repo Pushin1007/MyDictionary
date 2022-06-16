@@ -33,12 +33,12 @@ val application = module {
     single {
         Room.databaseBuilder(
             get(),
-            HistoryDataBase::class.java, "HistoryDB"
+            HistoryDataBase::class.java, HISTORY_DB
         ).build()
     }
 
 
-    single { get<HistoryDataBase>().historyDao() }
+    single  { get<HistoryDataBase>().historyDao() }
 }
 
 //зависимости конкретного экрана

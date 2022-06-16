@@ -17,6 +17,11 @@ const val MAIN_VIEW_MODEL = "MainViewModel"
 const val HISTORY_VIEW_MODEL = "HistoryViewModel"
 const val HISTORY_DATABASE = "HistoryDatabase"
 const val DATABASE_BUILDER = "DatabaseBuilder"
+const val WORD = "word"
+const val DESCRIPTION = "description"
+const val HISTORY_DB = "HistoryDB"
+
+
 
 
 
