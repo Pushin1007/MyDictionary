@@ -43,6 +43,7 @@ val application = module {
 
 //зависимости конкретного экрана
 val mainScreen = module {
+
     // Создаем фабрики - каждый раз новый экземпляр
     factory(qualifier = named(MAIN_INTERACTOR)) {
         MainInteractor(
