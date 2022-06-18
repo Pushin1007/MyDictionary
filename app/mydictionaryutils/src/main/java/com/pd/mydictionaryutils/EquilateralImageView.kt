@@ -1,4 +1,4 @@
-package com.pd.mydictionary.utils
+package com.pd.mydictionaryutils
 
 import android.content.Context
 import android.util.AttributeSet

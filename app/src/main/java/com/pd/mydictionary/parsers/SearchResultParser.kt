@@ -1,4 +1,4 @@
-package com.pd.mydictionary.utils
+package com.pd.mydictionary.parsers
 
 import com.pd.mydictionary.model.data.AppState
 import com.pd.mydictionary.model.data.DataModel

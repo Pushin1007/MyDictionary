@@ -1,10 +1,8 @@
-package com.pd.mydictionary.utils
+package com.pd.mydictionary.parsers
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.NetworkInfo
-import android.os.Build
 
 fun isOnline(context: Context): Boolean {
     var result = false
@@ -21,4 +19,4 @@ fun isOnline(context: Context): Boolean {
     }
     return result
 }
-//
+

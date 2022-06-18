@@ -9,8 +9,8 @@ import com.pd.mydictionary.R
 import com.pd.mydictionary.databinding.LoadingLayoutBinding
 import com.pd.mydictionary.model.data.AppState
 import com.pd.mydictionary.model.data.DataModel
-import com.pd.mydictionary.utils.AlertDialogFragment
-import com.pd.mydictionary.utils.isOnline
+import com.pd.mydictionaryutils.AlertDialogFragment
+import com.pd.mydictionary.parsers.isOnline
 import com.pd.mydictionary.viewmodel.BaseViewModel
 import com.pd.mydictionary.viewmodel.Interactor
 

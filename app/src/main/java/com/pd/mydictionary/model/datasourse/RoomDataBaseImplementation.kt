@@ -3,8 +3,8 @@ package com.pd.mydictionary.model.datasourse
 import com.pd.mydictionary.model.data.AppState
 import com.pd.mydictionary.model.data.DataModel
 import com.pd.mydictionary.room.HistoryDao
-import com.pd.mydictionary.utils.convertDataModelSuccessToEntity
-import com.pd.mydictionary.utils.mapHistoryEntityToSearchResult
+import com.pd.mydictionary.parsers.convertDataModelSuccessToEntity
+import com.pd.mydictionary.parsers.mapHistoryEntityToSearchResult
 
 class RoomDataBaseImplementation(private val historyDao: HistoryDao) :
     DataSourceLocal<List<DataModel>> {

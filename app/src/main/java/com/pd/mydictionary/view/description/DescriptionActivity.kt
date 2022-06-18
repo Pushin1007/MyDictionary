@@ -15,8 +15,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.pd.mydictionary.*
 import com.pd.mydictionary.databinding.ActivityDescriptionBinding
-import com.pd.mydictionary.utils.AlertDialogFragment
-import com.pd.mydictionary.utils.isOnline
+import com.pd.mydictionaryutils.AlertDialogFragment
+import com.pd.mydictionary.parsers.isOnline
 
 
 class DescriptionActivity : AppCompatActivity() {

@@ -2,7 +2,7 @@ package com.pd.mydictionary.view.history
 
 import androidx.lifecycle.LiveData
 import com.pd.mydictionary.model.data.AppState
-import com.pd.mydictionary.utils.parseLocalSearchResults
+import com.pd.mydictionary.parsers.parseLocalSearchResults
 import com.pd.mydictionary.viewmodel.BaseViewModel
 import kotlinx.coroutines.launch
 
