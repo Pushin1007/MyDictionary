@@ -17,12 +17,16 @@ const val MAIN_VIEW_MODEL = "MainViewModel"
 const val HISTORY_VIEW_MODEL = "HistoryViewModel"
 const val HISTORY_DATABASE = "HistoryDatabase"
 const val DATABASE_BUILDER = "DatabaseBuilder"
+const val WORD = "word"
+const val DESCRIPTION = "description"
+const val HISTORY_DB = "HistoryDB"
 
 
 
 
-const val TITLE_EXTRA = "89cbce59-e28f-418f-b470-ff67125c2e2f"
-const val MESSAGE_EXTRA = "0dd00b66-91c2-447d-b627-530065040905"
+
+
+
 
 const val DIALOG_FRAGMENT_TAG = "8c7dff51-9769-4f6d-bbee-a3896085e76e"
 

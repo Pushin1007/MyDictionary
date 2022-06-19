@@ -1,10 +1,10 @@
-package com.pd.mydictionary.utils
+package com.pd.mydictionaryutils
 
 import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDialogFragment
-import com.pd.mydictionary.MESSAGE_EXTRA
-import com.pd.mydictionary.TITLE_EXTRA
+import com.pd.mydictionary.parsers.getAlertDialog
+import com.pd.mydictionary.parsers.getStubAlertDialog
 
 class AlertDialogFragment : AppCompatDialogFragment() {
 

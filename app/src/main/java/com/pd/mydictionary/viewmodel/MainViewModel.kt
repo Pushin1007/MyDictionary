@@ -2,7 +2,7 @@ package com.pd.mydictionary.viewmodel
 
 import androidx.lifecycle.LiveData
 import com.pd.mydictionary.model.data.AppState
-import com.pd.mydictionary.utils.parseOnlineSearchResults
+import com.pd.mydictionary.parsers.parseOnlineSearchResults
 
 import com.pd.mydictionary.view.main.MainInteractor
 import kotlinx.coroutines.Dispatchers

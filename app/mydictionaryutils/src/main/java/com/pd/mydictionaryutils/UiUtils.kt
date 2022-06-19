@@ -1,8 +1,9 @@
-package com.pd.mydictionary.utils
+package com.pd.mydictionary.parsers
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
-import com.pd.mydictionary.R
+import com.pd.mydictionaryutils.R
+
 
 fun getStubAlertDialog(context: Context): AlertDialog {
     return getAlertDialog(context, null, null)

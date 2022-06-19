@@ -1,4 +1,4 @@
-package com.pd.mydictionary.utils
+package com.pd.mydictionary.parsers
 
 import com.pd.mydictionary.model.data.AppState
 import com.pd.mydictionary.model.data.DataModel
@@ -76,7 +76,8 @@ fun convertDataModelSuccessToEntity(appState: AppState): HistoryEntity? {
             if (searchResult.isNullOrEmpty() || searchResult[0].text.isNullOrEmpty()) {
                 null
             } else {
-                HistoryEntity(searchResult[0].text!!, null)
+                //HistoryEntity(searchResult[0].text!!, null)
+                searchResult[0].text?.let { HistoryEntity(it, null) }
             }
         }
         else -> null

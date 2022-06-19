@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pd.mydictionary.R
 import com.pd.mydictionary.model.data.DataModel
 import kotlinx.android.synthetic.main.activity_main_recyclerview_item.view.*
-import com.pd.mydictionary.utils.convertMeaningsToString
+import com.pd.mydictionary.parsers.convertMeaningsToString
 
 
 
