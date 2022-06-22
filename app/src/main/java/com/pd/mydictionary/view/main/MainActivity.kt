@@ -21,9 +21,13 @@ import com.pd.mydictionary.MAIN_VIEW_MODEL
 import com.pd.mydictionary.parsers.convertMeaningsToString
 import com.pd.mydictionary.view.description.DescriptionActivity
 import com.pd.mydictionary.view.history.HistoryActivity
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.qualifier.named
+import org.koin.android.ext.android.inject
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.androidx.scope.activityScope
+import org.koin.androidx.scope.currentScope
 
+import org.koin.core.qualifier.named
+import org.koin.core.scope.Scope
 
 
 class MainActivity : BaseActivity<AppState, MainInteractor>() {
@@ -82,7 +86,8 @@ private fun initViewModel() {
         if (binding.mainActivityRecyclerview.adapter != null) {
             throw IllegalStateException(R.string.ViewModel_initialised_first.toString())
         }
-        val viewModel: MainViewModel by viewModel( named(MAIN_VIEW_MODEL))
+       // val viewModel: MainViewModel by viewModel( named(MAIN_VIEW_MODEL))
+    val viewModel: MainViewModel by currentScope.inject()
         model = viewModel
         model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
     }

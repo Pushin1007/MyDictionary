@@ -5,10 +5,15 @@ import com.pd.mydictionary.databinding.ActivityHistoryBinding
 import com.pd.mydictionary.model.data.AppState
 import com.pd.mydictionary.model.data.DataModel
 import com.pd.mydictionary.view.base.BaseActivity
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import androidx.lifecycle.Observer
+
+
 import com.pd.mydictionary.HISTORY_VIEW_MODEL
 import com.pd.mydictionary.R
+import org.koin.android.ext.android.inject
+import org.koin.androidx.scope.activityScope
+import org.koin.androidx.scope.currentScope
+
+
 import org.koin.core.qualifier.named
 
 class HistoryActivity : BaseActivity<AppState, HistoryInteractor>() {
@@ -39,9 +44,11 @@ class HistoryActivity : BaseActivity<AppState, HistoryInteractor>() {
         if (binding.historyActivityRecyclerview.adapter != null) {
             throw IllegalStateException(R.string.ViewModel_initialised_first.toString())
         }
-        val viewModel: HistoryViewModel by viewModel(named(HISTORY_VIEW_MODEL))
+        //val viewModel: HistoryViewModel by viewModel(named(HISTORY_VIEW_MODEL))
+        val viewModel: HistoryViewModel by inject()
+
         model = viewModel
-        model.subscribe().observe(this@HistoryActivity, Observer<AppState> { renderData(it) })
+        model.subscribe().observe(this@HistoryActivity, { renderData(it) })
     }
 
     private fun initViews() {

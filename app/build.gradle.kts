@@ -48,7 +48,7 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.8.0")
+    implementation("androidx.core:core-ktx:1.7.0")
 
     implementation("androidx.appcompat:appcompat:1.4.2")
     implementation("com.google.android.material:material:1.6.1")
@@ -78,9 +78,14 @@ dependencies {
 
 
     //Koin
-    implementation("io.insert-koin:koin-android:3.1.5")
-    implementation("io.insert-koin:koin-core:3.1.5")
+    implementation("io.insert-koin:koin-android:3.1.2")
+    implementation("io.insert-koin:koin-core:3.1.2")
     implementation("io.insert-koin:koin-android-ext:3.0.2")
+
+
+    //Для совместимости с Java
+    implementation("io.insert-koin:koin-android-compat:3.1.2")
+
 
     //Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")

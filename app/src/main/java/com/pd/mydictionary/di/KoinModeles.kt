@@ -10,10 +10,13 @@ import com.pd.mydictionary.model.repository.RepositoryImplementation
 import com.pd.mydictionary.model.repository.RepositoryImplementationLocal
 import com.pd.mydictionary.model.repository.RepositoryLocal
 import com.pd.mydictionary.room.HistoryDataBase
+import com.pd.mydictionary.view.history.HistoryActivity
 import com.pd.mydictionary.view.history.HistoryInteractor
 import com.pd.mydictionary.view.history.HistoryViewModel
+import com.pd.mydictionary.view.main.MainActivity
 import com.pd.mydictionary.view.main.MainInteractor
 import com.pd.mydictionary.viewmodel.MainViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.core.qualifier.qualifier
 import org.koin.dsl.module
@@ -38,23 +41,43 @@ val application = module {
     }
 
 
-    single  { get<HistoryDataBase>().historyDao() }
+    single { get<HistoryDataBase>().historyDao() }
 }
+
 
 //зависимости конкретного экрана
 val mainScreen = module {
-
-    // Создаем фабрики - каждый раз новый экземпляр
-    factory(qualifier = named(MAIN_INTERACTOR)) {
-        MainInteractor(
-            get(named(NAME_REMOTE)),
-            get(named(NAME_LOCAL))
-        )
+    scope(named<MainActivity>()) {
+        scoped(qualifier = named(MAIN_INTERACTOR)) {
+            MainInteractor(
+                get(named(NAME_REMOTE)),
+                get(named(NAME_LOCAL))
+            )
+        }
+        viewModel(qualifier = named(MAIN_VIEW_MODEL)) { MainViewModel(get(named(MAIN_INTERACTOR))) }
     }
-    factory(qualifier = named(MAIN_VIEW_MODEL)) { MainViewModel(get(named(MAIN_INTERACTOR))) }
+
 }
 
 val historyScreen = module {
+    scope(named<HistoryActivity>()) {
+        scoped(qualifier = named(HISTORY_INTERACTOR)) {
+            HistoryInteractor(
+                get(named(NAME_REMOTE)),
+                get(named(NAME_LOCAL))
+            )
+        }
+        viewModel(qualifier = named(HISTORY_VIEW_MODEL)) {
+            HistoryViewModel(
+                get(
+                    named(
+                        HISTORY_INTERACTOR
+                    )
+                )
+            )
+        }
+    }
+
     factory(qualifier = named(HISTORY_VIEW_MODEL)) { HistoryViewModel(get(named(HISTORY_INTERACTOR))) }
 
     factory(qualifier = named(HISTORY_INTERACTOR)) {
