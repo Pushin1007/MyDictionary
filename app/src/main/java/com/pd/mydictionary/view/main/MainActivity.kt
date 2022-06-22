@@ -21,17 +21,22 @@ import com.pd.mydictionary.MAIN_VIEW_MODEL
 import com.pd.mydictionary.parsers.convertMeaningsToString
 import com.pd.mydictionary.view.description.DescriptionActivity
 import com.pd.mydictionary.view.history.HistoryActivity
+import com.pd.mydictionary.view.history.HistoryViewModel
+import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.inject
 import org.koin.android.scope.AndroidScopeComponent
+import org.koin.androidx.scope.activityRetainedScope
 import org.koin.androidx.scope.activityScope
 import org.koin.androidx.scope.currentScope
+import org.koin.androidx.scope.scope
 
 import org.koin.core.qualifier.named
 import org.koin.core.scope.Scope
 
 
-class MainActivity : BaseActivity<AppState, MainInteractor>() {
+class MainActivity : BaseActivity<AppState, MainInteractor>(),AndroidScopeComponent {
 
+    override val scope : Scope by activityRetainedScope()
 
     private lateinit var binding: ActivityMainBinding
     override lateinit var model: MainViewModel
@@ -87,7 +92,7 @@ private fun initViewModel() {
             throw IllegalStateException(R.string.ViewModel_initialised_first.toString())
         }
        // val viewModel: MainViewModel by viewModel( named(MAIN_VIEW_MODEL))
-    val viewModel: MainViewModel by currentScope.inject()
+    val viewModel: MainViewModel by inject(named(MAIN_VIEW_MODEL))
         model = viewModel
         model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
     }
