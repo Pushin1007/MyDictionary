@@ -31,7 +31,7 @@ class ViewByIdDelegate<out T : View>(
                     //Failsafe, возвращаеть хотя бы последнее View
                     return view
                 }
-                throw IllegalStateException("Cannot get View, there is no root yet")
+                throw IllegalStateException(ILLEGAL_STATE_EXCEPTION)
             }
             //Создаём View
             view = currentRoot.findViewById((viewId))

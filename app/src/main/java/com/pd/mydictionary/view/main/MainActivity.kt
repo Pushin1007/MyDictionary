@@ -4,13 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-
 import com.pd.mydictionary.BOTTOM_SHEET_FRAGMENT_DIALOG_TAG
 import com.pd.mydictionary.R
 import com.pd.mydictionary.databinding.ActivityMainBinding
 import com.pd.mydictionary.model.data.AppState
 import com.pd.mydictionary.model.data.DataModel
-
 import com.pd.mydictionary.parsers.isOnline
 import com.pd.mydictionary.view.base.BaseActivity
 
@@ -23,16 +21,10 @@ import com.pd.mydictionary.MAIN_VIEW_MODEL
 import com.pd.mydictionary.parsers.convertMeaningsToString
 import com.pd.mydictionary.view.description.DescriptionActivity
 import com.pd.mydictionary.view.history.HistoryActivity
-import com.pd.mydictionary.view.history.HistoryViewModel
 import com.pd.mydictionaryutils.viewById
-import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.inject
 import org.koin.android.scope.AndroidScopeComponent
 import org.koin.androidx.scope.activityRetainedScope
-import org.koin.androidx.scope.activityScope
-import org.koin.androidx.scope.currentScope
-import org.koin.androidx.scope.scope
-
 import org.koin.core.qualifier.named
 import org.koin.core.scope.Scope
 
@@ -104,8 +96,6 @@ private fun initViewModel() {
     }
 
     private fun initViews() {
-//        binding.searchFab.setOnClickListener(fabClickListener)
-//        binding.mainActivityRecyclerview.adapter = adapter
         searchFAB.setOnClickListener(fabClickListener)
         mainActivityRecyclerView.adapter = adapter
     }
