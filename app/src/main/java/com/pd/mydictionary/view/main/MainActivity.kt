@@ -17,11 +17,14 @@ import com.pd.mydictionary.view.base.BaseActivity
 import com.pd.mydictionary.viewmodel.MainViewModel
 
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pd.mydictionary.MAIN_VIEW_MODEL
 import com.pd.mydictionary.parsers.convertMeaningsToString
 import com.pd.mydictionary.view.description.DescriptionActivity
 import com.pd.mydictionary.view.history.HistoryActivity
 import com.pd.mydictionary.view.history.HistoryViewModel
+import com.pd.mydictionaryutils.viewById
 import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.inject
 import org.koin.android.scope.AndroidScopeComponent
@@ -35,6 +38,9 @@ import org.koin.core.scope.Scope
 
 
 class MainActivity : BaseActivity<AppState, MainInteractor>(),AndroidScopeComponent {
+
+    private val mainActivityRecyclerView by viewById<RecyclerView>(R.id.main_activity_recyclerview)
+    private val searchFAB by viewById<FloatingActionButton>(R.id.search_fab)
 
     override val scope : Scope by activityRetainedScope()
 
@@ -98,8 +104,10 @@ private fun initViewModel() {
     }
 
     private fun initViews() {
-        binding.searchFab.setOnClickListener(fabClickListener)
-        binding.mainActivityRecyclerview.adapter = adapter
+//        binding.searchFab.setOnClickListener(fabClickListener)
+//        binding.mainActivityRecyclerview.adapter = adapter
+        searchFAB.setOnClickListener(fabClickListener)
+        mainActivityRecyclerView.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
