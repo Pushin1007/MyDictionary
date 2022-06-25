@@ -55,7 +55,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation(project(":app:mydictionaryutils"))
-
+    implementation("androidx.core:core-splashscreen:1.0.0-rc01")
 
 
     //Kotlin

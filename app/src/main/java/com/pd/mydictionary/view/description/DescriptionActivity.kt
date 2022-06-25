@@ -2,10 +2,14 @@ package com.pd.mydictionary.view.description
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.RenderEffect
+import android.graphics.Shader
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
@@ -25,6 +29,7 @@ class DescriptionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDescriptionBinding
 
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDescriptionBinding.inflate(layoutInflater)
@@ -33,6 +38,7 @@ class DescriptionActivity : AppCompatActivity() {
         setActionbarHomeButtonAsUp()
         binding.descriptionScreenSwipeRefreshLayout.setOnRefreshListener { startLoadingOrShowError() }
         setData()
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -50,6 +56,7 @@ class DescriptionActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    @RequiresApi(Build.VERSION_CODES.S)
     private fun setData() {
         val bundle = intent.extras
         binding.descriptionHeader.text = bundle?.getString(WORD_EXTRA)
@@ -62,6 +69,7 @@ class DescriptionActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.S)
     private fun startLoadingOrShowError() {
         OnlineLiveData(this).observe(
             this@DescriptionActivity,
@@ -86,6 +94,8 @@ class DescriptionActivity : AppCompatActivity() {
             binding.descriptionScreenSwipeRefreshLayout.isRefreshing = false
         }
     }
+
+    @RequiresApi(31)
 
 
     private fun useGlideToLoadPhoto(imageView: ImageView, imageLink: String) {
@@ -120,6 +130,14 @@ class DescriptionActivity : AppCompatActivity() {
                     .centerCrop()
             )
             .into(imageView)
+
+
+// при нажатии на картинку блюрим ее
+        binding.descriptionImageview.setOnClickListener{
+            val blurEffect = RenderEffect.createBlurEffect(15f, 0f, Shader.TileMode.MIRROR)
+            imageView.setRenderEffect(blurEffect)
+        }
+
     }
 
 
