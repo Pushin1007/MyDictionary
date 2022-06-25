@@ -3,6 +3,7 @@ package com.pd.mydictionary.view.base
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.pd.mydictionary.DIALOG_FRAGMENT_TAG
 import com.pd.mydictionary.R
@@ -13,6 +14,7 @@ import com.pd.mydictionaryutils.AlertDialogFragment
 import com.pd.mydictionary.parsers.isOnline
 import com.pd.mydictionary.viewmodel.BaseViewModel
 import com.pd.mydictionary.viewmodel.Interactor
+import com.pd.mydictionaryutils.OnlineLiveData
 
 //Делаем родительский класс т.к. у нас много будет общего
 abstract class BaseActivity<T : AppState, I : Interactor<T>> : AppCompatActivity() {
@@ -23,13 +25,27 @@ abstract class BaseActivity<T : AppState, I : Interactor<T>> : AppCompatActivity
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
-        isNetworkAvailable = isOnline(applicationContext)
+        subscriberToNetworkChange()
+    }
+
+    private fun subscriberToNetworkChange() {
+        OnlineLiveData(this).observe(
+            this@BaseActivity
+        ) {
+            isNetworkAvailable = it
+            if (!isNetworkAvailable) {
+                Toast.makeText(
+                    this@BaseActivity,
+                    R.string.dialog_message_device_is_offline,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 
     override fun onResume() {
         super.onResume()
         binding = LoadingLayoutBinding.inflate(layoutInflater)
-        isNetworkAvailable = isOnline(applicationContext)
         if (!isNetworkAvailable && isDialogNull()) {
             showNoInternetConnectionDialog()
         }

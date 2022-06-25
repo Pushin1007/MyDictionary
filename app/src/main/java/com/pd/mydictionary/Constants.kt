@@ -23,6 +23,9 @@ const val HISTORY_DB = "HistoryDB"
 
 
 
+const val SLIDE_LEFT_DURATION = 1000L
+ const val COUNTDOWN_DURATION = 2000L
+ const val COUNTDOWN_INTERVAL = 1000L
 
 
 
