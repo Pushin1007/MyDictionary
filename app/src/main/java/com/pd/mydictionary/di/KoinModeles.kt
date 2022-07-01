@@ -48,6 +48,7 @@ val application = module {
 //зависимости конкретного экрана
 val mainScreen = module {
     scope(named<MainActivity>()) {
+        //scope<MainActivity>(){ // можно и так
         scoped(qualifier = named(MAIN_INTERACTOR)) {
             MainInteractor(
                 get(named(NAME_REMOTE)),

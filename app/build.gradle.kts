@@ -56,6 +56,7 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation(project(":app:mydictionaryutils"))
     implementation("androidx.core:core-splashscreen:1.0.0-rc01")
+    implementation("junit:junit:4.+")
 
 
     //Kotlin
@@ -94,6 +95,8 @@ dependencies {
 
     //Glide
     implementation("com.github.bumptech.glide:glide:4.12.0")
+    testImplementation("junit:junit:4.12")
+    testImplementation("org.junit.jupiter:junit-jupiter")
     kapt("com.github.bumptech.glide:compiler:4.11.0")
 
 
