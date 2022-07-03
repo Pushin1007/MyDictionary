@@ -1,0 +1,3 @@
+com.pd.mydictionaryutils
+string dialog_button_cancel
+string dialog_title_stub
