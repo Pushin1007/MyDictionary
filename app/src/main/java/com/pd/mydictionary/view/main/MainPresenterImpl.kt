@@ -5,6 +5,7 @@ import com.pd.mydictionary.model.datasourse.DataSourceLocal
 import com.pd.mydictionary.model.datasourse.DataSourceRemote
 import com.pd.mydictionary.model.repository.RepositoryImplementation
 import com.pd.mydictionary.presernter.Presenter
+import com.pd.mydictionary.rx.ISchedulerProvider
 import com.pd.mydictionary.rx.SchedulerProvider
 import com.pd.mydictionary.view.base.View
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -16,7 +17,7 @@ class MainPresenterImpl<T : AppState, V : View>(
         RepositoryImplementation(DataSourceLocal())
     ),
     protected val compositeDisposable: CompositeDisposable = CompositeDisposable(),
-    protected val schedulerProvider: SchedulerProvider = SchedulerProvider()
+    protected val schedulerProvider: ISchedulerProvider = SchedulerProvider()
 ) : Presenter<T, V> {
 
     private var currentView: V? = null

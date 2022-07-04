@@ -13,7 +13,6 @@ import com.pd.mydictionary.model.data.DataModel
 import com.pd.mydictionary.presernter.Presenter
 import com.pd.mydictionary.view.base.BaseActivity
 import com.pd.mydictionary.view.base.View
-import com.pd.mydictionary.view.main.MainAdapter
 
 
 class MainActivity : BaseActivity<AppState>() {

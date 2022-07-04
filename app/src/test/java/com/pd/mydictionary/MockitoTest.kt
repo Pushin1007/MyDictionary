@@ -1,47 +1,37 @@
 package com.pd.mydictionary
 
-import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.pd.mydictionary.model.data.*
 import com.pd.mydictionary.model.repository.RepositoryImplementation
-import com.pd.mydictionary.presernter.Presenter
+import com.pd.mydictionary.rx.ISchedulerProvider
 import com.pd.mydictionary.rx.TestSchedulerProvider
 import com.pd.mydictionary.view.base.View
 import com.pd.mydictionary.view.main.MainInteractor
 import com.pd.mydictionary.view.main.MainPresenterImpl
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.Mockito.mock
+import org.mockito.MockitoAnnotations
 
 
 class MockitoTest {
-    // val view = mock<View>()
-//    val appState = mock<AppState>()
 
-
-    // val remote: RepositoryImplementation = Mockito.mock(RepositoryImplementation::class.java)
-    // val local: RepositoryImplementation = Mockito.mock(RepositoryImplementation::class.java)
-
-    @Mock
-    private lateinit var remote: RepositoryImplementation
-
-    @Mock
     private lateinit var presenter: MainPresenterImpl<AppState, View>
+    private var schedulerProvider: ISchedulerProvider = TestSchedulerProvider()
+    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     @Mock
-    private val interactor: MainInteractor = MainInteractor(remote, remote)
+    lateinit var remote: RepositoryImplementation
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-
-        presenter = MainPresenterImpl(interactor)
+        val interactor = MainInteractor(remote, remote)
+        presenter = MainPresenterImpl(interactor, compositeDisposable, schedulerProvider)
     }
 
 
